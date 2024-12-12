@@ -1,0 +1,39 @@
+#include <stdio.h>
+#include <ctype.h>
+#include<string.h>
+// Function to encrypt the message using Caesar Cipher
+void encrypt(char *text, int shift) {
+    int i = 0;
+    while (text[i] != '\0') {
+        // If the character is a lowercase letter
+        if (islower(text[i])) {
+            text[i] = (text[i] - 'a' + shift) % 26 + 'a';
+        }
+        // If the character is an uppercase letter
+        else if (isupper(text[i])) {
+            text[i] = (text[i] - 'A' + shift) % 26 + 'A';
+        }
+        i++;
+    }
+}
+
+int main() {
+    char text[100];
+    int shift;
+
+    // Get the input message from the user
+    printf("Enter a message to encrypt: ");
+    fgets(text, sizeof(text), stdin);
+
+    // Get the shift value from the user
+    printf("Enter the shift value: ");
+    scanf("%d", &shift);
+
+    // Encrypt the message
+    encrypt(text, shift);
+
+    // Output the encrypted message
+    printf("Encrypted message: %s", text);
+
+    return 0;
+}
