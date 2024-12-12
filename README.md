@@ -19,5 +19,5 @@ This repository contains a simple implementation of the Caesar Cipher encryption
 ### Clone the repository:
 To use this program, clone the repository to your local machine:
 ```bash
-git clone https://github.com/Cyberpradeep/caesar-cipher.git
+git clone https://github.com/Cyberpradeep/PRODIGY_CS_01.git
 
