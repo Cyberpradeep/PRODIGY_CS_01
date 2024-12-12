@@ -1,39 +1,65 @@
 #include <stdio.h>
 #include <ctype.h>
-#include<string.h>
+
 // Function to encrypt the message using Caesar Cipher
-void encrypt(char *text, int shift) {
+void encrypt(char *message, int shift) {
     int i = 0;
-    while (text[i] != '\0') {
+    while (message[i] != '\0') {
         // If the character is a lowercase letter
-        if (islower(text[i])) {
-            text[i] = (text[i] - 'a' + shift) % 26 + 'a';
+        if (islower(message[i])) {
+            message[i] = (message[i] - 'a' + shift) % 26 + 'a';
         }
         // If the character is an uppercase letter
-        else if (isupper(text[i])) {
-            text[i] = (text[i] - 'A' + shift) % 26 + 'A';
+        else if (isupper(message[i])) {
+            message[i] = (message[i] - 'A' + shift) % 26 + 'A';
+        }
+        i++;
+    }
+}
+
+// Function to decrypt the message using Caesar Cipher
+void decrypt(char *message, int shift) {
+    int i = 0;
+    while (message[i] != '\0') {
+        // If the character is a lowercase letter
+        if (islower(message[i])) {
+            message[i] = (message[i] - 'a' - shift + 26) % 26 + 'a';
+        }
+        // If the character is an uppercase letter
+        else if (isupper(message[i])) {
+            message[i] = (message[i] - 'A' - shift + 26) % 26 + 'A';
         }
         i++;
     }
 }
 
 int main() {
-    char text[100];
-    int shift;
+    char message[100];
+    int shift, choice;
 
     // Get the input message from the user
-    printf("Enter a message to encrypt: ");
-    fgets(text, sizeof(text), stdin);
+    printf("Enter a message: ");
+    fgets(message, sizeof(message), stdin);
 
     // Get the shift value from the user
     printf("Enter the shift value: ");
     scanf("%d", &shift);
 
-    // Encrypt the message
-    encrypt(text, shift);
+    // Get the choice: Encrypt or Decrypt
+    printf("Choose operation:\n1. Encrypt\n2. Decrypt\nEnter your choice: ");
+    scanf("%d", &choice);
 
-    // Output the encrypted message
-    printf("Encrypted message: %s", text);
+    if (choice == 1) {
+        // Encrypt the message
+        encrypt(message, shift);
+        printf("Encrypted message: %s", message);
+    } else if (choice == 2) {
+        // Decrypt the message
+        decrypt(message, shift);
+        printf("Decrypted message: %s", message);
+    } else {
+        printf("Invalid choice!\n");
+    }
 
     return 0;
 }
